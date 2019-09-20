@@ -69,7 +69,7 @@ function ColorList(props) {
 
     event.preventDefault();
     axios
-      .delete(`/colors/${colors.id}`)
+      .delete('/colors/:id/1')
       .then(res => {
         props.colorToEdit(res.data);
         props.history.push('/color-list');
@@ -88,12 +88,12 @@ function ColorList(props) {
           <span>
             <span className="delete" onClick={() => deleteColor(colors)}>
               x
-              </span>{" "}
+              </span>{" Delete"}
             {colors.colors}
           </span>
 
           <div className="color-box" styles={`{ backgroundColor: ${colors.color} }`}
-          />
+          />Edit
         </li>
         )},}
       </ul>
@@ -119,7 +119,7 @@ function ColorList(props) {
                     code: { hex: e.target.value }
                   })
                 }
-                value={colorToEdit.code.hex}
+                value={colorToEdit.colors}
               />
             </label>
             <div className="button-row">
