@@ -14,7 +14,7 @@ const ColorList = ({ colors, updateColors, match, params, props }) => {
 
   useEffect(() => {
     const id = match.params.id;
-    const updateColors = colors.find(color => `${color.id}` === id);
+    const updateColors = colors.find(color => `${colors.id}` === id);
     if (updateColors) {
       console.log(updateColors);
       setEditing(updateColors);

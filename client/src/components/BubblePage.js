@@ -13,22 +13,43 @@ const BubblePage = () => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get('/colors')
-      .then(res => setColorList(res.data))
-      .catch(err => console.log(err));
-  }, []);
-
-
-  return (
-
-    <><ColorList colors={colorList} updateColors={setColorList} />
-      <Bubbles colors={colorList} />
-
-    </>
+      .get('http://localhost:5000/api/colors')
+      .then(res => {
+        setColorList({ data })
+          .catch(err => console.log(err))
+      }, []);
 
 
 
-  )
+    return (
+      <div className="colors-wrap">
+        <p>colors</p>
+        <ul>
+          {colors.map(color => (
+            <li key={color.color} onClick={() => colorList(color)}>
+              <span>
+                <span className="add" onClick={() => colorList(color)}>
+                  +
+                </span>{" "}
+                {color.color}
+              </span>
+              <div
+                className="color-box"
+                style={{ backgroundColor: color.code.hex }}
+              />
+            </li>
+          ))}
+        </ul>
+        <ColorList colors={colorList} updateColors={setColorList} />
+        <Bubbles colors={colorList} />
+
+      </div>
+
+    )
+
+
+  },
+
 
 
 }
