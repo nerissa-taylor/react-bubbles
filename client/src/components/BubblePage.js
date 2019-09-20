@@ -21,34 +21,14 @@ const BubblePage = () => {
 
 
 
+
   return (
-    <div className="colors-wrap">
-      <p>colors</p>
-      <ul>
-        this.state.colors.map(color =>{
-          <li key={color.color} onClick={() => colorList(color)}>
-            <span>
-              <span className="add" onClick={() => colorList(color)}>
-                +
-                </span>{" "}
-              {color.color}
-            </span>
-            <div
-              className="color-box"
-              style={{ backgroundColor: color.code.hex }}
-            />
-          </li>
-        }
-      </ul>
+    <>
       <ColorList colors={colorList} updateColors={setColorList} />
       <Bubbles colors={colorList} />
-
-    </div>
-
-  )
-
-
-}
+    </>
+  );
+};
 
 
 
