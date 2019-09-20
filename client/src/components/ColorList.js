@@ -85,7 +85,7 @@ function ColorList(props) {
 
         this props.colors && colors.map(color => (
           <li key={colors.colors} onClick={() => editColor(colors)}>
-          <span>
+          <span>Edit
             <span className="delete" onClick={() => deleteColor(colors)}>
               x
               </span>{" Delete"}
