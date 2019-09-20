@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import "./styles.scss";
 import PrivateRoute from './components/PrivateRoute';
 import BubblePage from './components/BubblePage';
+import ColorList from "./components/ColorList";
 
 function App() {
   const [colorList, setColorList] = useState([]);
@@ -16,9 +17,10 @@ function App() {
           Build a PrivateRoute component that will 
           display BubblePage when you're authenticated 
         */}
-
+        {/* <Route path={`${match.path}/colors/:id`} component={ColorList}></Route> */}
         <Route path="/" component={Login} />
         <PrivateRoute path="/protected" component={BubblePage} />
+
 
 
 

@@ -7,21 +7,24 @@ const initialColor = {
   code: { hex: "" }
 };
 
-const ColorList = (props) => {
+
+function ColorList(props) {
 
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
 
-  const { match, ...colors } = props
+  const { match, colors, MatchProfile } = props;
+
 
   useEffect(() => {
-    const id = match.params.id;
-    const updateColors = colors.find(BubblePage => `${colors.id}` === match.params.id);
+
+    const updateColors = colors.find(BubblePage => `${colors.id}` === props.colors.id
+    );
     if (updateColors) {
       console.log(updateColors);
       setEditing(updateColors);
     }
-  }, [colors, match]);
+  }, [props, colors]);
 
   const changeHandler = event => {
     event.persist();
@@ -48,7 +51,7 @@ const ColorList = (props) => {
     // think about where will you get the id from...
     // where is is saved right now?
     axios
-      .put(`http://localhost:5000/${colors.id}`, colors)
+      .put(`${colors.id}`, colors)
       .then(res => {
         props.colorToEdit(res.data);
         props.history.push(`/color-list/${colors.id}`);
@@ -66,7 +69,7 @@ const ColorList = (props) => {
 
     event.preventDefault();
     axios
-      .delete(`http://localhost:5000/colors/${colors.id}`)
+      .delete(`/colors/${colors.id}`)
       .then(res => {
         props.colorToEdit(res.data);
         props.history.push('/color-list');
@@ -80,19 +83,19 @@ const ColorList = (props) => {
       <p>colors</p>
       <ul>
 
-        {colors && colors.map(color => (
-          <li key={color.color} onClick={() => editColor(color)}>
-            <span>
-              <span className="delete" onClick={() => deleteColor(color)}>
-                x
+        this props.colors && colors.map(color => (
+          <li key={colors.colors} onClick={() => editColor(colors)}>
+          <span>
+            <span className="delete" onClick={() => deleteColor(colors)}>
+              x
               </span>{" "}
-              {color.color}
-            </span>
+            {colors.colors}
+          </span>
 
-            <div className="color-box" style={{ backgroundColor: color.code.hex }}
-            />
-          </li>
-        ))}
+          <div className="color-box" styles={`{ backgroundColor: ${colors.color} }`}
+          />
+        </li>
+        )},}
       </ul>
       {
         editing && (
